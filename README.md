@@ -2,13 +2,13 @@
 The dashboard for HMS FSAE for the 2027 season.
 
 ## Goals at a Glance
-[Switching from Python to C++](#Switching-from-Python-to-C++) 
+- [Switching from Python to C++](#Switching-from-Python-to-C++) 
     - Optimize the code
     - Write clean code
     - Write clear and concise comments
-[Have well maintained documentation](#Documation) 
+- [Have well maintained documentation](#Documation) 
     - A custom file with all of the functions and/or classes in the program including their uses and why they were added.
-[Modularity of the dashboard GUI](#Modularity-of-Ui) 
+- [Modularity of the dashboard GUI](#Modularity-of-Ui) 
     - Make classes for broad GUI elements
     - Separate file for GUI elements to be add and or changed
 
