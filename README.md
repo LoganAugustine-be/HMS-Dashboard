@@ -12,7 +12,7 @@ The dashboard for HMS FSAE for the 2027 season.
     - Make classes for broad GUI elements
     - Separate file for GUI elements to be add and or changed
 
-## Changes from Previous Versions
+## Changes
 ### Switching from using Python to C++
 &nbsp;&nbsp;&nbsp;&nbsp;Instead of using Python and the library Kivy as our backend and GUI respectively we will now be using C++ with OpenGL to handle the backend and GUI of the program with the libraries GLAD and GLFW to streamline the process of developing graphics with OpenGL.
 
