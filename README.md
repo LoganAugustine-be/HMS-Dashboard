@@ -31,5 +31,5 @@ The dashboard for HMS FSAE for the 2027 season.
 ### Modularity of Ui
 &nbsp;&nbsp;&nbsp;&nbsp;One of the goals of this project is to allow for modularity of the GUI as well as making it as easy as possible to change, move, add, or remove Ui elements from the dashboard.
 
-#### How
+#### How will we achieve this
 &nbsp;&nbsp;&nbsp;&nbsp;This will be done by having a file structure that separates the backend elements from the GUI and Ui elements allowing easier navigation of the program. We will also aim to have many custom classes that will generalize a lot of what OpenGL allows to be done so the GUI can be quickly changed and there is less repetitive lines in the code leading to cleaner code.
