@@ -16,7 +16,7 @@ The dashboard for HMS FSAE for the 2027 season.
 ### Switching from using Python to C++
 &nbsp;&nbsp;&nbsp;&nbsp;Instead of using Python and the library Kivy as our backend and GUI respectively we will now be using C++ with OpenGL to handle the backend and GUI of the program with the libraries GLAD and GLFW to streamline the process of developing graphics with OpenGL.
 
-#### Reason for the switch
+### Reason for the switch
 &nbsp;&nbsp;&nbsp;&nbsp;Switching from Python to C++ wasn’t made off of a whim but has a had a good amount of thought behind it. One of the other contenders to switch to was C which has a lot of the benefits of C++ as well as being even lower level it allows for more optimization and custom garbage collection. However, C was quickly out of the question as one benefit of a higher-level language is accessibility, one of the goals of the new dashboard is to be accessible to new people joining the club so they may change it if they wish to. Another reason why C was not chosen was due to it not being object oriented, an object oriented language would allow for modular class structure for the UI elements which is another goal of this transition to C++. Due to these factors as well as others such as the popularity of C++ it was believed that people joining the club would already have an understanding of C++. There are many other reasons for switch to C++ or even more broadly why we switched from Python below.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Most notability C++ is lighter-weight than Python shrinking file sizes. C++ is also a lower-level language allowing for more freedom and flexibility which allows for more room for optimization and customization within the backend of the program.
@@ -31,5 +31,5 @@ The dashboard for HMS FSAE for the 2027 season.
 ### Modularity of Ui
 &nbsp;&nbsp;&nbsp;&nbsp;One of the goals of this project is to allow for modularity of the GUI as well as making it as easy as possible to change, move, add, or remove Ui elements from the dashboard.
 
-#### How will we achieve this
+### How will we achieve this
 &nbsp;&nbsp;&nbsp;&nbsp;This will be done by having a file structure that separates the backend elements from the GUI and Ui elements allowing easier navigation of the program. We will also aim to have many custom classes that will generalize a lot of what OpenGL allows to be done so the GUI can be quickly changed and there is less repetitive lines in the code leading to cleaner code.
