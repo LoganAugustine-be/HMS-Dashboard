@@ -8,5 +8,3 @@
 
 2. Modularity 
     Modulatrity plays a large role in how the backend of the dash is/will be programmed to allow for quick GUI changes whether it be which values are displayed or the color of text. This way it will be more effecient for our Ergonomics team to change the look and feel of the dash for the drivers.
-
-# How to Change the Look
