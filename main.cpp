@@ -1,30 +1,27 @@
 #include "Config.h"
-
+#include <vector>
 #include "shaderClass.h"
 #include "VAO.h"
 #include "VBO.h"
 #include "EBO.h"
+#include "Polygon.h"
+
 
 
 GLFWwindow* window;
 
-// Vertecies Coordinates
+Polygon BackgroundFrame;
+
 GLfloat vertices[] = {
-	-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,
-	0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,
-	0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f,
-	-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f,
-	0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f,
-	0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f
+		 20.0f,  20.0f, 0.0f, 0.5f, 0.8f, 0.2f, // top right
+		 20.0f, 0.0f, 0.0f, 0.5f, 0.8f, 0.2f, // bottom right
+		 0.0f,  0.0f, 0.0f, 0.5f, 0.8f, 0.2f, // bottom left
+		 0.0f,  20.0f, 0.0f, 0.5f, 0.8f, 0.2f, // top left 
 };
-
-// Indices for vertices order
-GLuint indices[] = {
-		0, 3, 5, // first triangle
-		3, 2, 4,  // second triangle
-		5, 4, 1   // third triangle
+GLuint indices[] = {  // note that we start from 0!
+	0, 1, 3,   // first triangle
+	1, 2, 3    // second triangle
 };
-
 int main() {
 	// Initialize GLFW
 	glfwInit();
@@ -51,19 +48,34 @@ int main() {
 	// Set the viewport to cover the new window
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
+
+	std::vector<Polygon> allPolygons;
+	
+	Polygon polygon1 = Polygon(vertices, sizeof(vertices)/sizeof(*vertices), indices, 6);
+	allPolygons.push_back((Polygon)polygon1);
+
+	Polygon polygon2;
+	allPolygons.push_back((Polygon)polygon2);
+
+
+	BackgroundFrame.data = BackgroundFrame.combineAllPolygonData(allPolygons);
+	BackgroundFrame.vertices = BackgroundFrame.data.vertices;
+	BackgroundFrame.indices = BackgroundFrame.data.indices;
+
 	Shader shaderProgram("default.vert", "default.frag");
+
+
 
 	VAO VAO1;
 	VAO1.Bind();
-
-	VBO VBO1(vertices, sizeof(vertices));
-	EBO EBO1(indices, sizeof(indices));
-
-	VAO1.LinkVBO(VBO1, 0);
+	VBO VBO1(BackgroundFrame.vertices.data(), BackgroundFrame.vertices.size());
+	EBO EBO1(BackgroundFrame.indices.data(), BackgroundFrame.indices.size());
+	
+	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void*)0);
+	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 6 * sizeof(float), (void*)(3*sizeof(float)));
 	VAO1.Unbind();
 	VBO1.Unbind();
 	EBO1.Unbind();
-
 
 	// Main loop
 	while (!glfwWindowShouldClose(window)) {
@@ -73,19 +85,20 @@ int main() {
 		shaderProgram.Activate();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
-		// Draw the triangle using the GL_TRIANGLES primitive, with 0 vertices offset and 3 vertices to draw
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+		//Draw the triangle using the GL_TRIANGLES primitive, with 0 vertices offset and 3 vertices to draw
+		glDrawElements(GL_TRIANGLES, BackgroundFrame.indices.size(), GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(window);
 		// Handle all GLFW events
 		glfwPollEvents();
 	}
 
 	// De-allocate all resources once they've outlived their purpose
-	VAO1.Delete();
+	/*VAO1.Delete();
 	VBO1.Delete();	
-	EBO1.Delete();
+	EBO1.Delete();*/
 	shaderProgram.Delete();
 
+	
 	// Destroy window and terminate GLFW
 	glfwDestroyWindow(window);
 	glfwTerminate();

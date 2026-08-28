@@ -5,13 +5,19 @@
 
 class EBO
 {
-public:
-	GLuint ID;
-	EBO(GLuint* indices, GLsizeiptr size);
+	public:
+		// ID reference for EBO
+		GLuint ID;
 
-	void Bind();
-	void Unbind();
-	void Delete();
+		// Constructor that generates a EBO and links it to indices
+		EBO(GLuint* indices, GLsizeiptr size);
+
+		// Binds the EBO
+		void Bind();
+		// Unbinds the EBO
+		void Unbind();
+		// Deletes the EBO
+		void Delete();
 };
 
 #endif

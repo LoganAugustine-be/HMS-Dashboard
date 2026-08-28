@@ -8,6 +8,7 @@ class VBO
 	public:
 		// ID reference for VBO
 		GLuint ID;
+
 		// Constructor that generates a VBO and links it to vertices
 		VBO(GLfloat* vertices, GLsizeiptr size);
 
